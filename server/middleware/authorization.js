@@ -1,11 +1,13 @@
-const {Product,Cart, Wishlist} = require('../models')
+const {Post} = require('../models')
 
 function authorization(req,res,next) {
     let id = req.params.id
     
-    Product.findByPk(id)
+    Post.findByPk(id)
     .then(data =>{
-        if (!data) throw {msg : "Product not found!", code : 404}
+        console.log(data, req.id)
+        if (!data) throw {msg : "Post not found!", code : 404}
+        else if (data.id != req.id) throw {msg : "you're not authorized!", code : 401}
         else next()
     })
     .catch(err => {
@@ -13,32 +15,4 @@ function authorization(req,res,next) {
     })
 }
 
-function cartAuthorization(req,res,next) {
-    let id = req.params.id
-    
-    Cart.findByPk(id)
-    .then(data =>{
-        if (!data) throw {msg : "Cart not found!", code : 404}
-        if (data.UserId !== req.userData) throw {msg : "Unauthorized Account!", code : 401}
-        else next()
-    })
-    .catch(err => {
-        next(err)
-    })
-}
-
-function wishlistAuthorization(req,res,next) {
-    let id = req.params.id
-    
-    Wishlist.findByPk(id)
-    .then(data =>{
-        if (!data) throw {msg : "Wishlist not found!", code : 404}
-        if (data.UserId !== req.userData) throw {msg : "Unauthorized Account!", code : 401}
-        else next()
-    })
-    .catch(err => {
-        next(err)
-    })
-}
-
-module.exports = {authorization, cartAuthorization, wishlistAuthorization}
+module.exports = {authorization}

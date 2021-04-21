@@ -31,7 +31,7 @@ async function custAuthentication(req,res,next) {
             }
         })
         if (!user) throw {msg : "authentication failed", code : 401}
-        req.userData = decoded.id
+        req.id = decoded.id
         next()
     } catch (err) {
         next(err)   

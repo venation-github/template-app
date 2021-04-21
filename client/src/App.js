@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Add from './pages/Add'
+import Edit from './pages/Edit'
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/add" component={Add} />
+          <Route path="/edit/:id" component={Edit} />
         </Switch>
       </Router>
     </div>

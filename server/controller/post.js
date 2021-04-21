@@ -49,6 +49,9 @@ class Controller {
     }
 
     static edit (req,res,next) {
+        // It accept MULTIPART/FORM input so use req.field,
+        // if input is body JSON, use req.body instead
+        // https://github.com/hatashiro/express-formidable
         Post.update(req.body, {
             where : {
                 id : req.params.id
@@ -56,9 +59,10 @@ class Controller {
             returning : true
         })
         .then(data => {
-            res.status(200).json(data[1][0])
+            res.status(200).json(req.body)
         })
         .catch(err => {
+            console.log(err, "<<<<<<ERRRROOOORRR")
             next(err)
         })
     }

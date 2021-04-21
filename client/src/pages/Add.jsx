@@ -20,7 +20,7 @@ export default function Addform(props) {
         input.append('content', content)
 
         Axios({
-            url: 'http://localhost:3000/post',
+            url: '/post',
             method: 'post',
             data : input,
             headers: {

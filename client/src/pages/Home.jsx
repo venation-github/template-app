@@ -55,7 +55,7 @@ export default function Home() {
                                 <td>{x.title}</td>
                                 <td>{x.content}</td>
                                 <td>
-                                    <Link to={`/${x.id}`}><button className="button is-black" style={{ marginRight: "10px" }}>Edit</button></Link>
+                                    <Link to={`/edit/${x.id}`}><button className="button is-black" style={{ marginRight: "10px" }}>Edit</button></Link>
                                     <button className="button is-black" onClick={(e) => {
                                         e.preventDefault()
                                         Axios({
